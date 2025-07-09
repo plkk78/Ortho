@@ -3,671 +3,839 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paul Lim - Education Technology Specialist</title>
+    <title>Paul Lim's EdTech Adventure</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #2B78E4;
+            --secondary: #FFD700;
+            --accent: #4CAF50;
+            --dark: #333;
+            --light: #f9f9f9;
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Open Sans', sans-serif;
+            color: var(--dark);
+            background-color: #f5f7fa;
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            min-height: 100vh;
         }
-
+        
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+        
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-
-        /* Header */
+        
+        /* Header Styles */
         header {
-            background: rgba(44, 62, 80, 0.95);
-            backdrop-filter: blur(10px);
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
         }
-
+        
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0;
+            padding: 20px 0;
         }
-
+        
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #1e3c72;
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
         }
-
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            color: white;
+        }
+        
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2rem;
         }
-
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
         .nav-links a {
             text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s ease;
+            color: var(--dark);
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
         }
-
+        
         .nav-links a:hover {
-            color: #1e3c72;
+            color: var(--primary);
         }
-
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
-            padding: 150px 0 100px;
-            text-align: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(43,120,228,0.1) 0%, rgba(255,215,0,0.05) 100%);
+            padding-top: 80px;
             position: relative;
             overflow: hidden;
         }
-
-        .hero::before {
-            content: '';
+        
+        .hero-content {
+            max-width: 600px;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            color: var(--dark);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid var(--primary);
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: var(--primary);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            margin-left: 15px;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .floating-icons {
             position: absolute;
+            width: 100%;
+            height: 100%;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'%3E%3Cpath d='m0 40l40-40h-40v40zm40 0v-40h-40l40 40z'/%3E%3C/g%3E%3C/svg%3E") repeat;
+            pointer-events: none;
         }
-
-        .hero-content {
+        
+        .floating-icon {
+            position: absolute;
+            opacity: 0.7;
+            animation: float 6s infinite ease-in-out;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        
+        /* Skills Section */
+        .section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: #666;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .skill-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .skill-icon {
+            width: 80px;
+            height: 80px;
+            background-color: rgba(43,120,228,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 30px;
+            color: var(--primary);
+        }
+        
+        .skill-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        /* Experience Section */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline:before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: var(--primary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+        
+        .timeline-item {
+            padding: 20px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        
+        .timeline-content:after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+            top: 30px;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content:after {
+            right: -40px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content:after {
+            left: -40px;
+        }
+        
+        .timeline-date {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .timeline-content h3 {
+            margin-bottom: 10px;
+        }
+        
+        .timeline-content p {
+            margin-bottom: 15px;
+        }
+        
+        .timeline-badge {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            top: 30px;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-badge {
+            right: -20px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-badge {
+            left: -20px;
+        }
+        
+        /* Competencies Section */
+        .toolbox {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .tool {
+            background-color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            font-weight: 600;
+            color: var(--primary);
+            border: 2px solid rgba(43,120,228,0.2);
+            transition: all 0.3s;
+        }
+        
+        .tool:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .toolbox-category {
+            margin-bottom: 40px;
+        }
+        
+        .toolbox-category h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        /* Testimonials Section */
+        .testimonials {
+            background-color: var(--primary);
+            color: white;
+            padding: 100px 0;
+        }
+        
+        .testimonials .section-title h2 {
+            color: white;
+        }
+        
+        .testimonials .section-title p {
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            color: var(--dark);
+            position: relative;
+        }
+        
+        .testimonial-card:before {
+            content: '"';
+            position: absolute;
+            font-size: 80px;
+            color: rgba(43,120,228,0.1);
+            top: 10px;
+            left: 20px;
+            line-height: 1;
+        }
+        
+        .testimonial-content {
+            margin-bottom: 20px;
             position: relative;
             z-index: 1;
         }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero .subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .hero .description {
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto 2rem;
-            opacity: 0.8;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
-        }
-
-        .cta-button:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-3px);
-        }
-
-        /* Section Styling */
-        section {
-            padding: 80px 0;
-            background: white;
-        }
-
-        section:nth-child(even) {
-            background: #f8f9fa;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #333;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(90deg, #1e3c72, #2a5298);
-            border-radius: 2px;
-        }
-
-        /* Skills Section */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .skill-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #e9ecef;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .skill-card h3 {
-            color: #1e3c72;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .skill-card p {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        /* Experience Section */
-        .experience-item {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 15px;
-            margin-bottom: 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            border-left: 5px solid #1e3c72;
-        }
-
-        .experience-item h3 {
-            color: #1e3c72;
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .experience-item .role {
-            color: #2a5298;
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .experience-item .period {
-            color: #666;
-            font-style: italic;
-            margin-bottom: 1rem;
-        }
-
-        .experience-item ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .experience-item li {
-            padding: 0.5rem 0;
-            position: relative;
-            padding-left: 1.5rem;
-        }
-
-        .experience-item li::before {
-            content: '▶';
-            position: absolute;
-            left: 0;
-            color: #1e3c72;
-        }
-
-        /* Competencies Section */
-        .competencies-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .competency-item {
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            color: white;
-            padding: 1rem;
-            border-radius: 10px;
-            text-align: center;
-            font-weight: 600;
-            transition: transform 0.3s ease;
-        }
-
-        .competency-item:hover {
-            transform: scale(1.05);
-        }
-
-        /* Testimonial Section */
-        .testimonial-section {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
-            padding: 80px 0;
-        }
-
-        .testimonial-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 3rem;
-            margin: 2rem auto;
-            max-width: 800px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .testimonial-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 2rem;
-            font-style: italic;
-        }
-
+        
         .testimonial-author {
-            text-align: right;
-            font-weight: 600;
-            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
         }
-
-        .testimonial-title {
-            font-size: 0.9rem;
-            opacity: 0.8;
-            margin-top: 0.5rem;
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
         }
-
+        
+        .author-info h4 {
+            margin-bottom: 5px;
+        }
+        
+        .author-info p {
+            font-size: 14px;
+            color: #666;
+        }
+        
         /* Contact Section */
         .contact-form {
             max-width: 600px;
             margin: 0 auto;
-            background: white;
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
-
+        
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 20px;
         }
-
+        
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 8px;
             font-weight: 600;
-            color: #333;
         }
-
-        .form-group input,
-        .form-group textarea {
+        
+        .form-control {
             width: 100%;
-            padding: 12px;
-            border: 2px solid #e9ecef;
-            border-radius: 10px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Open Sans', sans-serif;
+            transition: border-color 0.3s;
         }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
+        
+        .form-control:focus {
             outline: none;
-            border-color: #1e3c72;
+            border-color: var(--primary);
         }
-
-        .form-group textarea {
+        
+        textarea.form-control {
+            min-height: 150px;
             resize: vertical;
-            min-height: 120px;
         }
-
+        
         .submit-btn {
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            background-color: var(--primary);
             color: white;
-            padding: 15px 40px;
             border: none;
+            padding: 12px 30px;
             border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
+            font-weight: 600;
+            transition: background-color 0.3s;
         }
-
+        
         .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(30, 60, 114, 0.3);
+            background-color: #1a5bbf;
         }
-
+        
+        .contact-info {
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .contact-info a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 15px;
+            display: inline-block;
+        }
+        
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+        
         /* Footer */
         footer {
-            background: #333;
+            background-color: var(--dark);
             color: white;
             text-align: center;
-            padding: 2rem 0;
+            padding: 30px 0;
+            margin-top: 100px;
         }
-
-        /* Responsive Design */
+        
+        /* Responsive Styles */
         @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
             .nav-links {
                 display: none;
             }
-
-            .hero h1 {
-                font-size: 2.5rem;
+            
+            .timeline:before {
+                left: 31px;
             }
-
-            .hero .subtitle {
-                font-size: 1.2rem;
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
             }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
             }
-
-            .competencies-grid {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            
+            .timeline-content:after, 
+            .timeline-item:nth-child(even) .timeline-content:after {
+                left: 15px;
             }
-        }
-
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Animation */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
+            
+            .timeline-badge, 
+            .timeline-item:nth-child(even) .timeline-badge {
+                left: 11px;
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .skill-card,
-        .experience-item {
-            animation: fadeInUp 0.6s ease-out;
         }
     </style>
 </head>
 <body>
+    <!-- Header -->
     <header>
-        <nav class="container">
-            <div class="logo">Paul Lim</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#competencies">Competencies</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <div class="logo-icon">PL</div>
+                    <span>Paul Lim</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#skills">Skills Lab</a></li>
+                    <li><a href="#experience">Career Quest</a></li>
+                    <li><a href="#competencies">EdTech Toolbox</a></li>
+                    <li><a href="#testimonials">Testimonial Zone</a></li>
+                    <li><a href="#contact">Contact Portal</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <section id="home" class="hero">
+    <!-- Hero Section -->
+    <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Paul Lim</h1>
-                <p class="subtitle">Education Technology Specialist</p>
-                <p class="description">
-                    Transforming education through innovative technology solutions, blended learning, and pedagogical excellence. 
-                    Over 10 years of experience in educational technology, content creation, and curriculum development.
-                </p>
-                <a href="#contact" class="cta-button">Get In Touch</a>
+                <h1>Paul Lim's EdTech Adventure</h1>
+                <p>Blending pedagogy with technology to create transformative learning experiences</p>
+                <div class="hero-buttons">
+                    <a href="#skills" class="btn">Start Exploring</a>
+                    <a href="#contact" class="btn btn-outline">Contact Me</a>
+                </div>
             </div>
+        </div>
+        <div class="floating-icons">
+            <!-- These would be replaced with actual icon elements -->
+            <div class="floating-icon" style="top: 20%; left: 70%;">📚</div>
+            <div class="floating-icon" style="top: 40%; left: 80%;">💻</div>
+            <div class="floating-icon" style="top: 60%; left: 75%;">🧠</div>
+            <div class="floating-icon" style="top: 30%; left: 15%;">🎓</div>
+            <div class="floating-icon" style="top: 70%; left: 20%;">🤖</div>
         </div>
     </section>
 
-    <section id="skills">
+    <!-- Skills Section -->
+    <section id="skills" class="section">
         <div class="container">
-            <h2 class="section-title">Skills & Attributes</h2>
+            <div class="section-title">
+                <h2>Skills Lab</h2>
+                <p>Explore my core skills and attributes that drive successful learning experiences</p>
+            </div>
             <div class="skills-grid">
                 <div class="skill-card">
+                    <div class="skill-icon">🔍</div>
                     <h3>Critical Thinking</h3>
-                    <p>Decision prioritisation in an evolving, Agile landscape. Expertise in analyzing complex educational challenges and implementing strategic solutions.</p>
+                    <p>Decision prioritization in an evolving, Agile landscape. Used in SEAADE blended learning research.</p>
                 </div>
                 <div class="skill-card">
+                    <div class="skill-icon">🗺️</div>
                     <h3>Strategic Planning</h3>
-                    <p>Large scale implementation of educational technology initiatives. Proven track record in managing projects up to $1.5 million in scope.</p>
+                    <p>Large scale implementation expertise. Managed 3-year project with 15,000 users annually.</p>
                 </div>
                 <div class="skill-card">
+                    <div class="skill-icon">🎨</div>
                     <h3>Creativity meets Pedagogy</h3>
-                    <p>Content development through pedagogical approach. Bridging the gap between innovative technology and effective learning methodologies.</p>
+                    <p>Content development through pedagogical approach. Created award-winning interactive Science eBooks.</p>
                 </div>
                 <div class="skill-card">
+                    <div class="skill-icon">💡</div>
                     <h3>Learning Technology</h3>
-                    <p>Integrating technology into learning design and delivery. Specializing in blended learning solutions and AI-powered content generation.</p>
+                    <p>Integrating technology into learning design and delivery. Specialized in AI content generation and predictive analysis.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="experience">
+    <!-- Experience Section -->
+    <section id="experience" class="section">
         <div class="container">
-            <h2 class="section-title">Current Position</h2>
-            <div class="experience-item">
-                <h3>National University of Singapore</h3>
-                <div class="role">Faculty of Dentistry - Technology Enhanced Learning</div>
-                <div class="period">2021 to Current</div>
-                <p style="margin-bottom: 1rem;"><strong>Focus:</strong> Blended learning implementation and innovation</p>
-                <ul>
-                    <li>Content generation with AI technology</li>
-                    <li>Data mining and predictive analysis of student performance</li>
-                    <li>Software design and development for productivity enhancement</li>
-                    <li>Streamlining clinical and academic workflows</li>
-                    <li>Unifying multiple applications into single platforms</li>
-                    <li>Algorithm implementation for patient-to-student allocation</li>
-                </ul>
+            <div class="section-title">
+                <h2>Career Quest</h2>
+                <p>My professional journey through the world of education technology</p>
             </div>
-            
-            <div class="experience-item">
-                <h3>Research Achievement</h3>
-                <div class="role">Southeast Asia Association for Dental Education (SEAADE)</div>
-                <div class="period">2023</div>
-                <p style="margin-bottom: 1rem;">
-                    <strong>Awarded for research pilot:</strong> "The Impact of Content delivery - Modality on Blended Learning"
-                </p>
-                <ul>
-                    <li>Proof of concept pilot transitioning from didactic lectures to blended learning</li>
-                    <li>eLearning facilitation and content creation</li>
-                    <li>Comprehensive lesson and curriculum planning</li>
-                    <li>Collaboration with Orthodontics discipline</li>
-                </ul>
-            </div>
-
-            <div class="experience-item">
-                <h3>Career Highlights</h3>
-                <div class="role">Education Technology Sector</div>
-                <div class="period">10+ Years Experience</div>
-                <ul>
-                    <li>Managed projects with scope up to $1.5 million</li>
-                    <li>Led 3-year project serving 15,000 users annually</li>
-                    <li>Conducted training workshops for 1000+ educators</li>
-                    <li>Worked with SMEs from pre-school to adult learning</li>
-                    <li>7+ years client management with executive-level stakeholders</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section id="competencies">
-        <div class="container">
-            <h2 class="section-title">Core Competencies</h2>
-            <div class="competencies-grid">
-                <div class="competency-item">Certified SAFe 5 Agilist</div>
-                <div class="competency-item">Design Thinking & Lean Stack</div>
-                <div class="competency-item">System Leadership</div>
-                <div class="competency-item">Business Development</div>
-                <div class="competency-item">IT Solutioning</div>
-                <div class="competency-item">Project Management</div>
-                <div class="competency-item">Strategic Planning</div>
-                <div class="competency-item">Generative AI</div>
-                <div class="competency-item">Instructional Design</div>
-                <div class="competency-item">Content Creation</div>
-                <div class="competency-item">Storyboarding</div>
-                <div class="competency-item">Video Production</div>
-                <div class="competency-item">Graphic Design</div>
-                <div class="competency-item">Web Development</div>
-                <div class="competency-item">Training & Development</div>
-                <div class="competency-item">Communication Skills</div>
-            </div>
-        </div>
-    </section>
-
-    <section id="testimonials" class="testimonial-section">
-        <div class="container">
-            <h2 class="section-title" style="color: white;">Client Testimonial</h2>
-            <div class="testimonial-card">
-                <div class="testimonial-text">
-                    "Throughout these 3 projects, Paul Lim carried out his work professionally and conscientiously. He was able to understand and translate our business requirements and provided good quality deliverables. He and his team helped us to provide engaging e-learning modular programmes with pre and post assessments that were able to be hosted on different learning management systems. Paul Lim was also proactive in proposing solutions and pre-empting problems. He also addressed and resolved learner and system issues promptly. We are pleased to recommend Paul Lim as a professional, competent and reliable project manager and pedagogical specialist."
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-badge">1</div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2021 - Current</div>
+                        <h3>National University of Singapore</h3>
+                        <h4>Faculty of Dentistry - Technology Enhanced Learning</h4>
+                        <p>Blended learning specialist focusing on content generation with AI, data mining, predictive analysis, and software development to enhance academic workflows.</p>
+                        <p>Awarded for research pilot on "The Impact of Content delivery - Modality on Blended Learning".</p>
+                    </div>
                 </div>
-                <div class="testimonial-author">
-                    Ms Goh Wee Lee
-                    <div class="testimonial-title">Managing Director, Strategic Value Consulting Pte Ltd</div>
+                <div class="timeline-item">
+                    <div class="timeline-badge">2</div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2008 - 2020</div>
+                        <h3>Amdon Consulting Pte Ltd</h3>
+                        <h4>Senior Project Manager / Learning Designer</h4>
+                        <p>Led teams of 30 designers and 20 programmers across regional offices. Managed projects up to $1.5M and conducted training for 1000+ educators.</p>
+                        <p>Developed award-winning interactive educational content used in local schools and internationally.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-badge">3</div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">1996 - 1999</div>
+                        <h3>Education Foundation</h3>
+                        <h4>Singapore Polytechnic</h4>
+                        <p>Diploma in Software Programming and Systems Analysis, laying the technical foundation for my edtech career.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact">
+    <!-- Competencies Section -->
+    <section id="competencies" class="section">
         <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <form class="contact-form" id="contactForm">
+            <div class="section-title">
+                <h2>EdTech Toolbox</h2>
+                <p>My collection of skills, certifications, and methodologies</p>
+            </div>
+            <div class="toolbox-category">
+                <h3>Certifications</h3>
+                <div class="toolbox">
+                    <span class="tool">Certified SAFe 5 Agilist</span>
+                    <span class="tool">Project Management</span>
+                    <span class="tool">WSQ ACLP (In Progress)</span>
+                </div>
+            </div>
+            <div class="toolbox-category">
+                <h3>Technical Skills</h3>
+                <div class="toolbox">
+                    <span class="tool">Generative AI</span>
+                    <span class="tool">Articulate 360</span>
+                    <span class="tool">Adobe Creative Suite</span>
+                    <span class="tool">HTML/CSS/JS</span>
+                    <span class="tool">Data Analysis</span>
+                </div>
+            </div>
+            <div class="toolbox-category">
+                <h3>Methodologies</h3>
+                <div class="toolbox">
+                    <span class="tool">ADDIE</span>
+                    <span class="tool">5E BSCS</span>
+                    <span class="tool">Design Thinking</span>
+                    <span class="tool">Lean Stack</span>
+                    <span class="tool">Agile</span>
+                </div>
+            </div>
+            <div class="toolbox-category">
+                <h3>Soft Skills</h3>
+                <div class="toolbox">
+                    <span class="tool">System Leadership</span>
+                    <span class="tool">Strategic Planning</span>
+                    <span class="tool">Client Management</span>
+                    <span class="tool">Training & Facilitation</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Testimonial Zone</h2>
+                <p>What colleagues and clients say about working with me</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>Collaborated with Paul and his team for a CPR/BCLS project. He was very professional, responsive, responsible and easy to work with.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">WM</div>
+                        <div class="author-info">
+                            <h4>Wan-Koo May Yeok</h4>
+                            <p>Assistant Director at Nanyang Polytechnic</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>Paul is responsible and responsive. He was able to keep the project on time and anticipate our needs. He delivered more than promised.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">HT</div>
+                        <div class="author-info">
+                            <h4>Henry Toi</h4>
+                            <p>Managing Director at Nurture Craft Group</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>Having worked with Paul for several projects, I have no doubt of the value he brings. He has proven himself to be an excellent project manager ensuring all deliverables are up to spec.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">KC</div>
+                        <div class="author-info">
+                            <h4>Kakit Cheong</h4>
+                            <p>Consultant at Deloitte</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Portal</h2>
+                <p>Get in touch to discuss your next education technology project</p>
+            </div>
+            <form class="contact-form">
                 <div class="form-group">
-                    <label for="name">Name *</label>
-                    <input type="text" id="name" name="name" required>
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label for="email">Email *</label>
-                    <input type="email" id="email" name="email" required>
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label for="company">Company/Organization</label>
-                    <input type="text" id="company" name="company">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label for="subject">Subject *</label>
-                    <input type="text" id="subject" name="subject" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message *</label>
-                    <textarea id="message" name="message" required placeholder="Tell me about your project or how I can help you..."></textarea>
+                    <label for="message">Message</label>
+                    <textarea id="message" class="form-control" required></textarea>
                 </div>
                 <button type="submit" class="submit-btn">Send Message</button>
             </form>
+            <div class="contact-info">
+                <a href="mailto:paul.lim@example.com">paul.lim@example.com</a>
+                <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn Profile</a>
+            </div>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 Paul Lim. All rights reserved. | Education Technology Specialist</p>
+            <p>&copy; 2025 Paul Lim's EdTech Adventure. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        // Smooth scrolling for navigation links
+        // Simple smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
-        });
-
-        // Contact form handling
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const company = document.getElementById('company').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-            
-            // Create mailto link
-            const mailtoLink = `mailto:your-email@example.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
-                `Name: ${name}\nEmail: ${email}\nCompany: ${company}\n\nMessage:\n${message}`
-            )}`;
-            
-            window.location.href = mailtoLink;
-            
-            // Show success message
-            alert('Thank you for your message! Your email client should open now.');
-            
-            // Reset form
-            this.reset();
-        });
-
-        // Add active class to nav links on scroll
-        window.addEventListener('scroll', function() {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-links a');
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= sectionTop - 200) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === '#' + current) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Add intersection observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe all skill cards and experience items
-        document.querySelectorAll('.skill-card, .experience-item').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
         });
     </script>
 </body>
