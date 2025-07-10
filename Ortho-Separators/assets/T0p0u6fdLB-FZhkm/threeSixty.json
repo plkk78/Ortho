@@ -1,0 +1,27 @@
+{
+  "version": "3.63.27628.0",
+  "course_id": "5xlqVdMGAcu",
+  "title": "Ortho Separators Knowledge Check",
+  "thumbnail": "story_content/thumbnail.jpg",
+  "scenes": [
+    {
+      "title": "Untitled Scene"
+    }
+  ],
+  "slides": [
+    {
+      "id": "5XG3ZTAvLdE",
+      "title": "Place the following steps in order for placing separators:",
+      "scene_index": "1.1"
+    }
+  ],
+  "player": {
+    "name": "unified",
+    "width": 980,
+    "height": 658
+  },
+  "stage": {
+    "width": 720,
+    "height": 540
+  }
+}
